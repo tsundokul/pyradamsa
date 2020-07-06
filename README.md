@@ -4,6 +4,13 @@ pyradamsa
 `pyradamsa` provides an interface for calling libradamsa methods from within Python, allowing one to perform mutations on byte blocks (aka fuzzing). For more details see [radamsa](https://gitlab.com/akihe/radamsa) (a general-purpose fuzzer) and [libradamsa](https://github.com/andreafioraldi/libradamsa) (precompiled radamsa library).
 
 ## Usage
+
+Install the package using `pip` (or [build](#building) it from source)
+```bash
+pip install pyradamsa
+```
+
+Do some fuzzing
 ```python
 import pyradamsa
 
