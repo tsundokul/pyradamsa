@@ -1,0 +1,11 @@
+#!/bin/bash
+
+find . \( \
+  -name '__pycache__' -or \
+  -name '*.pyc' -or \
+  -name '.pytest_cache' -or \
+  -name 'build' -or \
+  -name 'htmlcov' -or \
+  -name '.eggs' \) | xargs rm -rf
+
+pytest

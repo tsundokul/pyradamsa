@@ -1,0 +1,19 @@
+--- libradamsa.c	2020-07-05 14:57:45.515792769 +0300
++++ libradamsa2.c	2020-07-05 15:03:20.383799887 +0300
+@@ -4854,13 +4854,15 @@
+ #include <radamsa.h>
+ 
+ void init() {
++   if (memstart != NULL) 
++      free(memstart);
+    int nobjs=0, nwords=0;
+    hp = (byte *) &heap; /* builtin heap */
+    state = IFALSE;
+    heap_metrics(&nwords, &nobjs);
+    max_heap_mb = (W == 4) ? 4096 : 65535;
+    nwords += nobjs + INITCELLS;
+-   memstart = genstart = fp = (word *) realloc(NULL, (nwords + MEMPAD)*W);
++   memstart = genstart = fp = (word *) malloc((nwords + MEMPAD)*W);
+    if (!memstart) return;
+    memend = memstart + nwords - MEMPAD;
+    state = (word) load_heap(nobjs);
