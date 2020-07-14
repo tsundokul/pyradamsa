@@ -63,15 +63,15 @@ class Radamsa():
         # Adjust destination buffer in regard to max_mut
         buffer = (c_uint8 * _max_mut)()
 
-        self.LIB.radamsa(
+        block_size = int(self.LIB.radamsa(
             data_to_mutate,
             length,
             buffer,
             max_mut,
             seed
+            )
         )
-
-        return c_char_p(addressof(buffer)).value
+        return bytes(buffer[:block_size])
 
     @staticmethod
     def lib_path():

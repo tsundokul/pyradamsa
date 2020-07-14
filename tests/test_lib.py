@@ -39,3 +39,7 @@ def test_seed_wraparound(data):
 def test_seed_static(data):
     r = pyradamsa.Radamsa(1337)
     assert r.fuzz(data) == r.fuzz(data)
+
+def test_returned_len():
+    data = b"\xaa\x00"*100
+    assert len(pyradamsa.Radamsa(seed=1337).fuzz(data)) == 201
