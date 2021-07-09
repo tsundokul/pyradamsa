@@ -3,8 +3,8 @@ from setuptools import setup, Extension, find_packages
 from pyradamsa.version import __version__
 
 libradamsa = Extension('libradamsa',
-   sources=['libradamsa/libradamsa.c'],
-   include_dirs=['libradamsa'],
+   sources=['radamsa/c/libradamsa.c'],
+   include_dirs=['radamsa/c'],
    py_limited_api=True,
    extra_compile_args=['-O3', '-lrt']
 )

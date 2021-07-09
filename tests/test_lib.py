@@ -9,7 +9,7 @@ def test_lib_present():
 
 def test_lib_symbols():
     lib = ctypes.CDLL(pyradamsa.Radamsa.lib_path())
-    assert hasattr(lib, 'init')
+    assert hasattr(lib, 'radamsa_init')
     assert hasattr(lib, 'radamsa')
     assert hasattr(lib, 'radamsa_inplace')
 
@@ -30,7 +30,7 @@ def data():
 
 def test_seed_arg(data):
     assert pyradamsa.Radamsa().fuzz(
-        data, seed=1337) == b'GET /auth?pass=HelloWorld HTTP\xc0\xb1.1'
+        data, seed=1338) == b'GET \xed\xaa\xad/auth?pas=Hello\xf3\xa0\x81\xb6World HTTP1.1'
 
 def test_seed_wraparound(data):
     r = pyradamsa.Radamsa()
@@ -42,4 +42,4 @@ def test_seed_static(data):
 
 def test_returned_len():
     data = b"\xaa\x00"*100
-    assert len(pyradamsa.Radamsa(seed=1337).fuzz(data)) == 201
+    assert len(pyradamsa.Radamsa(seed=1337).fuzz(data)) == 246
