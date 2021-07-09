@@ -49,7 +49,11 @@ git clone --recurse-submodules https://github.com/tsundokul/pyradamsa.git
 cd pyradamsa
 
 # patch memory leak when reinitializing owl vm
-patch libradamsa/libradamsa.c realloc.patch
+patch radamsa/c/lib.c realloc.patch
+
+# generate libradamsa.c
+cd radamsa
+make lib/hex c/libradamsa.c
 
 # OPTIONAL: when using manylinux (https://github.com/pypa/manylinux)
 docker run --rm -it -v `pwd`:/io quay.io/pypa/manylinux2010_x86_64 /bin/bash
