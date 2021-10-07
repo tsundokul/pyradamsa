@@ -25,13 +25,13 @@ class Radamsa():
 
     def _declare_sigs(self):
         """C signatures for libradamsa functions
-        extern void init()
+        extern void radamsa_init()
         extern size_t radamsa(uint8_t * ptr, size_t len, uint8_t * target,
             size_t max, unsigned int seed)
         extern size_t radamsa_inplace(uint8_t * ptr, size_t len,
             size_t max, unsigned int seed)"""
-        self.LIB.init.argtypes = []
-        self.LIB.init.restype = None
+        self.LIB.radamsa_init.argtypes = []
+        self.LIB.radamsa_init.restype = None
 
         self.LIB.radamsa.restype = c_size_t
         self.LIB.radamsa.argtypes = [POINTER(c_uint8), c_size_t,
@@ -44,7 +44,7 @@ class Radamsa():
     def fuzz(self, data, seed=None, max_mut=None):
         # (re) initialize OWL/Scheme VM to ensure output repeatability,
         # otherwise the VM's heap will get corrupted
-        self.LIB.init()
+        self.LIB.radamsa_init()
 
         if seed is None:
             if self.seed is None:
