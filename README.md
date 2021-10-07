@@ -3,6 +3,13 @@ pyradamsa
 
 `pyradamsa` provides an interface for calling libradamsa methods from within Python, allowing one to perform mutations on byte blocks (aka fuzzing). For more details see [radamsa](https://gitlab.com/akihe/radamsa) (a general-purpose fuzzer) and [libradamsa](https://github.com/andreafioraldi/libradamsa) (precompiled radamsa library).
 
+### NOTE
+The master branch uses AFL++'s libradamsa. An alternative version created by [p1-olm](https://github.com/p1-olm) is available on [radamsa-upstream](https://github.com/tsundokul/pyradamsa/tree/radamsa-upstream) branch and is based on the [original](https://gitlab.com/akihe/radamsa) libradamsa upstream.
+
+How is the `radamsa-upstream` different than the `master` version?
+- The owl VM initialization uses different seeds, so result are different when mutating same bytes with the same seed
+- Future updates from libradamsa creators will show up first in `radamsa-upstream`
+
 ## Usage
 
 Install the package using `pip` (or [build](#building) it from source)
