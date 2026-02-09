@@ -49,7 +49,7 @@ rad = pyradamsa.Radamsa(mut_offset=2048)
 ```
 
 ## Building
-Currently wheels are available for linux i686 and x86_64
+Currently wheels are built from source for your architecture
 ```sh
 # Clone the repo
 git clone --recurse-submodules https://github.com/tsundokul/pyradamsa.git
@@ -58,22 +58,11 @@ cd pyradamsa
 # patch memory leak when reinitializing owl vm
 patch libradamsa/libradamsa.c realloc.patch
 
-# OPTIONAL: when using manylinux (https://github.com/pypa/manylinux)
-docker run --rm -it -v `pwd`:/io quay.io/pypa/manylinux2010_x86_64 /bin/bash
-cd /io && alias python='/opt/python/cp35-cp35m/bin/python3.5'
-export PATH="/opt/python/cp35-cp35m/bin/:${PATH}"
-
-# Install requirements
-python -m pip install -r requirements.txt
-
-# Build C extension (libradamsa.so)
-python setup.py build_ext
-
-# Run tests
+# Run tests (uv handles building the C extension automatically)
 ./run_tests
 
 # Build wheel
-python setup.py bdist_wheel
+uv build
 ```
 
 ## Contributing

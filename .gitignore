@@ -37,3 +37,7 @@ htmlcov
 .mr.developer.cfg
 .project
 .pydevproject
+
+# uv
+uv.lock
+.venv

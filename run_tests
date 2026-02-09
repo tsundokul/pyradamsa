@@ -8,4 +8,4 @@ find . \( \
   -name 'htmlcov' -or \
   -name '.eggs' \) | xargs rm -rf
 
-pytest
+uv run pytest

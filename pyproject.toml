@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyradamsa"
+version = "1.0.0"
+description = "Python bindings for radamsa fuzzing library."
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Daniel Timofte @tim17d", email = "timofte.daniel@tuta.io" },
+]
+keywords = ["radamsa", "fuzzing", "libradamsa"]
+requires-python = ">=3.2"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Topic :: Security",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/tsundokul/pyradamsa"
+
+[dependency-groups]
+dev = ["pytest", "pytest-cov"]
+
+[tool.setuptools]
+packages = ["pyradamsa"]
+
+[tool.setuptools.package-data]
+pyradamsa = ["lib/*"]
+
+[tool.pytest.ini_options]
+cache_dir = ".venv/.pytest_cache"
+norecursedirs = ["venv*", ".*"]
+addopts = [
+    "-r",
+    "fEsxXw",
+    "-vvv",
+    "--doctest-modules",
+    "--ignore=setup.py",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov=pyradamsa",
+    "--maxfail=1",
+]
